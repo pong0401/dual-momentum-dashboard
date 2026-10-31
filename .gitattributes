@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Preserve the exact frozen upstream bytes used by provenance SHA-256 checks.
+vendor/** -text
+*.parquet -text
