@@ -1,0 +1,79 @@
+name: Update Yahoo data and publish dashboard
+on:
+  schedule:
+    # 22:23 UTC = 05:23 Bangkok next day; after both US summer/winter closes.
+    - cron: '23 22 * * 1-5'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['scripts/**', 'vendor/**', 'tests/**', 'config/**', 'requirements.txt', 'docs/*.html', 'docs/*.css', 'docs/*.js', '.github/workflows/**']
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: dual-daily-publisher
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      refresh_ok: ${{ steps.refresh.outcome }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Restore interrupted download units
+        uses: actions/cache/restore@v4
+        with:
+          path: .refresh
+          key: yahoo-units-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: yahoo-units-
+      - name: Incremental Yahoo refresh
+        id: refresh
+        continue-on-error: true
+        run: python -u scripts/pipeline.py refresh
+      - name: Persist download checkpoints
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .refresh
+          key: yahoo-units-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Run correctness checks
+        run: python -m pytest -q
+      - name: Build frozen strategy dashboard
+        if: steps.refresh.outcome == 'success'
+        run: python -u scripts/pipeline.py build
+      - name: Persist accumulated data and reporting artifacts
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data docs/data
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: accumulate completed-session prices and refresh dashboard'
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - name: Report incomplete data refresh
+        if: steps.refresh.outcome != 'success'
+        run: |
+          echo 'Yahoo refresh failed closed. Previous dashboard preserved; health.json reports the blocker.'
+          exit 1
+  deploy:
+    needs: update
+    # Publish the health warning even when refresh failed, while preserving old weights.
+    if: always() && needs.update.result != 'cancelled'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

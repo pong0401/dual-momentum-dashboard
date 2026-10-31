@@ -1,0 +1,8 @@
+{
+  "strategy_id": "dual_momentum_capped_sl",
+  "cost_bps_per_side": 10.7,
+  "membership_asof": "2026-10-31",
+  "overlap_days": 14,
+  "schedule_utc": "23 22 * * 1-5",
+  "timezone": "Asia/Bangkok"
+}

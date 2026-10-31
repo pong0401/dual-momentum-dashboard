@@ -1,0 +1,30 @@
+{
+  "source_repository": "port_opt/ETF",
+  "seed_asof": "2026-10-30",
+  "membership_asof": "2026-10-31",
+  "files": {
+    "src/country_etf_tactical/alignment.py": "ca0b66aa03d53f6ea65da4ae0a054b94b1935c793db0274abe1249d424e32455",
+    "src/country_etf_tactical/backtest.py": "3a5dc3cc069a051ac2320500e0f3c0f74ce619771e8bbd8f94a263166507146d",
+    "src/country_etf_tactical/cloud_producer.py": "5afa9b69ef0433c006025fb6c9915a4d6553f4546ab021901a88ad002354dd19",
+    "src/country_etf_tactical/config_export.py": "5f91d6db6cc175515bb9fc16da117c987f5b7863819554034fb18354c0ecb7eb",
+    "src/country_etf_tactical/metrics.py": "4c28b9d77b6359649df8719db4269025aa751665dc5b8227750cc3a5d90814ee",
+    "src/country_etf_tactical/overlay.py": "8da18ecbe510ee7686a9b5829962d41a44b0161d175b92eea3690bc0e26310d4",
+    "src/country_etf_tactical/rebalance.py": "f0fd6e7e8b5c6091071cdfa1f047ab7814e9dab25d89d1966b4fb553e4fc7617",
+    "src/country_etf_tactical/rebalance_country_only.py": "c138eaf69c3f420d9e6af606eb76a7ada9ce6c39f9c655942c6e90c597d17916",
+    "src/country_etf_tactical/rebalance_dual_momentum.py": "8087c08e61e32935723196e56094c4c70ce8ce0105da82e7b93352543f178150",
+    "src/country_etf_tactical/signals.py": "13a6347d33894fd8ec60bd5d317e41d3f90ec9becaa6c336355177f9209195c9",
+    "src/country_etf_tactical/strategy_registry.py": "2823788fdd5a94cefe1a7b9e437cabf3954271930de5d09da768267f68f965c5",
+    "src/country_etf_tactical/universe.py": "430e07b393c970bbe1dd7fa52e961bbd2027fcd4e566f4d0147e194c16c971b6",
+    "src/country_etf_tactical/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scripts/run_country_etf_tactical_pit_megacap_momentum_backtest.py": "e9f853dfaddd0381b3f74a4e253fe80214df19341cd8f07f83d596a3e929bbf0",
+    "scripts/run_country_etf_tactical_sector_growth_momentum_backtest.py": "5d74b2cf3be822be25471c327438a8f1a9e8234c57aa1a6ac22f6cb6026438e4",
+    "data/cache/pit_sp500_membership_intervals.csv": "6a7f8799e1d345cd405a876597b00ec5144b4877092193090421490c3376aa15",
+    "config/country_etf_tactical_dual_momentum_config.json": "2a64fe02a68fbc3ff8cec988439028159930f6eb3765fd2c628a68ebbdc6a571"
+  },
+  "seed_sha256": "20d329964532124eeadab553522f87d33f5d58e781d4e4d4f1e7d193b530e44a",
+  "seed_shape": [
+    9878,
+    790
+  ],
+  "price_semantics": "Inherited adjusted-close research cache. Future Yahoo adjusted returns are chained to existing levels; levels are not executable quotes."
+}

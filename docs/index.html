@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dual Momentum research dashboard: monthly holdings, historical performance versus SPY, and incremental Yahoo data updates.">
+  <meta name="color-scheme" content="dark"><title>Dual / Momentum Observatory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><a href="#" class="brand"><span class="brand-icon">D<span>↗</span></span><div>DUAL<span class="brand-sub">MOMENTUM OBSERVATORY</span></div></a><nav><a href="#overview">Overview</a><a href="#holdings">Monthly holdings</a><a href="#methodology">Methodology</a><a href="https://github.com/pong0401/dual-momentum-dashboard" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<main>
+  <div class="eyebrow"><span class="dot"></span> SYSTEMATIC ALLOCATION / RESEARCH MONITOR</div>
+  <section class="intro"><div><h1>A longer view.<br><span>A disciplined portfolio.</span></h1><p>ติดตามน้ำหนัก Dual Momentum รายเดือน และผลจำลองย้อนหลังเทียบ SPY<br>อัปเดตจาก Yahoo Finance หลังตลาดปิด โดยสะสมเฉพาะข้อมูลใหม่</p></div><div class="signal-status"><span class="label">LATEST COMPLETED SESSION</span><strong id="asof">Loading…</strong><span id="health" class="status">Checking data freshness</span><small id="updated"></small></div></section>
+  <div class="toolbar"><div class="segmented" id="variant-control" aria-label="Strategy variant"><button data-variant="with_btc" class="active" aria-pressed="true">Dual · includes BTC rules</button><button data-variant="no_btc" aria-pressed="false">Dual · no BTC</button></div><span class="research-tag">RESEARCH SIMULATION · USD</span></div>
+  <div id="error" class="notice" role="alert" hidden></div>
+  <section id="overview" class="metrics" aria-label="Performance metrics"><article><span class="label">ANNUALIZED RETURN</span><strong id="cagr">—</strong><small id="cagr-spy">CAGR · comparable window</small></article><article><span class="label">TOTAL RETURN</span><strong id="total-return">—</strong><small id="total-spy">After estimated model costs</small></article><article><span class="label">MAX DRAWDOWN</span><strong id="drawdown">—</strong><small id="dd-spy">Peak-to-trough decline</small></article><article><span class="label">SHARPE RATIO</span><strong id="sharpe">—</strong><small id="sharpe-spy">252 sessions · risk-free = 0</small></article></section>
+  <section class="panel chart-panel"><div class="panel-heading"><div><span class="eyebrow muted">PORTFOLIO GROWTH</span><h2>Dual versus the market</h2></div><div class="ranges" id="range-control"><button data-range="1Y">1Y</button><button data-range="3Y">3Y</button><button data-range="5Y">5Y</button><button data-range="10Y">10Y</button><button data-range="ALL" class="active">ALL</button></div></div>
+  <div class="chart-options"><div class="legend"><span><i class="teal"></i>Dual · estimated net</span><span><i class="blue"></i>SPY</span><label><input id="show-gross" type="checkbox"><i class="gray"></i>Dual gross</label><label><input id="show-stress" type="checkbox"><i class="amber"></i>2× costs</label></div><label class="log-toggle"><input id="log-scale" type="checkbox" checked>Log scale</label></div>
+  <div id="chart" class="chart" aria-label="Interactive growth of $100 chart"><div class="loading">Building a longer perspective…</div></div>
+  <div class="chart-footer"><span id="chart-period">—</span><span>Growth of $100 · hover for daily values</span></div>
+  <div class="performance-note">ผลจำลองย้อนหลัง ไม่ใช่ผลตอบแทนบัญชีจริง · ต้นทุนประมาณการ <span id="cost">10.7</span> bps ต่อขา · ข้อมูลทองเป็น GC=F futures proxy</div>
+  </section>
+  <section class="holdings-section" id="holdings"><div class="section-title"><div><span class="eyebrow muted">THE ALLOCATION RECORD</span><h2>What the strategy holds</h2><p>น้ำหนักหลัง overlay ล่าสุด และรายการเป้าหมายรายเดือนย้อนหลัง 12 เดือน</p></div><a id="download" class="text-link" href="data/returns_with_btc.csv" download>Download daily returns ↓</a></div>
+  <div class="holdings-grid"><article class="panel current"><div class="panel-heading"><div><span class="label">LATEST EFFECTIVE WEIGHTS</span><h3 id="current-month">—</h3></div><span class="pill">After overlay</span></div><div id="allocation-bar" class="allocation-bar"></div><div id="allocation"></div><div id="overlay-note" class="subtle"></div></article>
+  <article class="panel history"><div class="panel-heading"><div><span class="label">MONTHLY TARGETS</span><h3>12-month archive</h3></div><label class="archive-label">Window <select id="archive-year"><option value="recent">Latest 12</option></select></label></div><div class="table-scroll"><table><thead><tr><th>Holding month</th><th>Stock picks</th><th>ETF picks</th><th>Dual net</th><th>SPY</th></tr></thead><tbody id="months"></tbody></table></div><p class="subtle">คลิกเดือนเพื่อดูน้ำหนักเป้าหมายก่อน overlay · เดือนที่ยังไม่เริ่มแสดงเป็น Upcoming</p><div id="month-detail" class="month-detail" hidden></div></article></div>
+  </section>
+  <section class="panel methodology" id="methodology"><div><span class="eyebrow muted">TRANSPARENT BY DESIGN</span><h2>Data you can inspect.</h2><p>สูตรเดิม ข้อมูลสะสม และประวัติการอัปเดตที่ตรวจสอบได้</p><a class="text-link" href="https://github.com/pong0401/dual-momentum-dashboard/actions" target="_blank" rel="noopener">View update jobs ↗</a></div><div><ul id="method-list"></ul><p id="provenance" class="subtle"></p><a class="text-link" href="data/latest_manifest.json" target="_blank" rel="noopener">Signal manifest ↗</a> <a class="text-link" href="data/monthly_holdings.json" target="_blank" rel="noopener">Monthly weights JSON ↗</a></div></section>
+  <footer><span>DUAL / MOMENTUM OBSERVATORY</span><span>Data: Yahoo Finance · Incremental updates at 05:23 Bangkok (Tue–Sat)</span><span>No brokerage connection or order submission</span></footer>
+</main><script type="module" src="app.js"></script>
+</body></html>

@@ -1,0 +1,28 @@
+{
+  "strategy_id": "dual_momentum_capped_sl",
+  "config_hash": "77ac4f3a027f71979de35778e3bafc8089a678d3cdda7ecb47bca0c7f3fd79fc",
+  "run_id": "dashboard_20261031T081307Z",
+  "data_asof": "2026-10-30",
+  "signal_asof": "2026-10-30",
+  "execution_asof": null,
+  "source_hash": "9e31619ca1d47f7050a364c10f4c658d3f30b7ee3ced2ab8a03d30fce8683f4e",
+  "generated_at_utc": "2026-10-31T08:13:07Z",
+  "research_slug": "country_etf_tactical_dual_momentum_stock_top2_25w_sl25_cap0p75_etf_top5_30_country1",
+  "display_name": "Dual Momentum (Capped, Stop-Loss)",
+  "has_daily_overlay": true,
+  "month_end_decision_date": "2026-10-30",
+  "execution_asof_note": "null until the next trading session actually occurs in the price feed; this producer does not guess a calendar date for a session that has not happened yet",
+  "gold_research_ticker": "GC=F",
+  "gold_execution_mapping_note": "GC=F is the upstream research signal only. Any GC=F -> tradable-instrument mapping (e.g. GLD) is the downstream execution owner's responsibility and is not applied here.",
+  "variants_included": [
+    "no_btc",
+    "with_btc_research_context"
+  ],
+  "artifacts": {
+    "manifest": "manifest.json",
+    "weights": "weights.json"
+  },
+  "calculation_asof": "2026-11-01",
+  "live_authority": false,
+  "membership_asof": "2026-10-31"
+}

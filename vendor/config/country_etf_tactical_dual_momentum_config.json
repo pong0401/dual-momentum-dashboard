@@ -1,0 +1,247 @@
+{
+  "strategy_name": "Country ETF tactical + Gold DD boost 16, dual momentum sleeves (PIT stock top-2 weighted 25%, capped momentum score, 25% stop-loss + growth/factor ETF top-5 30%) + SPY gate + dynamic BIL + shrunk country sleeve",
+  "status": "research_only -- not wired into cloud_producer/live weight production",
+  "delta_from": "config/country_etf_tactical_pit_megacap_top5_spygate_config.json",
+  "revision_note": "Updated from the original uncapped/no-stoploss version after a live case (SNDK, a PIT stock sleeve pick) revealed a scoring-formula weakness: an extreme 12m return (+2643%) kept a stock ranked #1 for months after a sharp reversal (-41% in a single month) because the momentum formula's 6m/12m terms dominate the score even at their nominal 10-40% weights. Two independent fixes were added and combined -- see stock_sleeve.momentum_score_cap and stock_sleeve.stoploss below. Reproduce with: `python scripts/run_country_etf_tactical_dual_momentum_backtest.py --stock-top-k 2 --stock-weighted --stock-sleeve-pct 0.25 --etf-top-k 5 --etf-sleeve-pct 0.30 --spy-gate --dynamic-bil --country-n-picks 1 --stock-stoploss-pct 0.25 --stock-momentum-cap 0.75`",
+  "universe": {
+    "base_assets": [
+      "SPY",
+      "GC=F",
+      "BTC-USD",
+      "BIL"
+    ],
+    "aux_price_only": [
+      "IEF"
+    ],
+    "stock_sleeve": {
+      "source": "S&P 500 point-in-time historical constituents (avoids survivorship bias)",
+      "membership_data": "data/cache/pit_sp500_membership_intervals.csv",
+      "n_tickers_in_universe": 707,
+      "min_history_trading_days_before_eligible": 252,
+      "top_k": 2,
+      "weighting": "rank-weighted -- pick 1 gets 2 parts, pick 2 gets 1 part of the sleeve (not equal split); at top_k=1 this is identical to equal split",
+      "sleeve_pct_from_spy": 0.25,
+      "momentum_score_cap": {
+        "enabled": true,
+        "cap": 0.75,
+        "mechanism": "each of the 1m/3m/6m/12m lookback returns is clipped to +/-75%% before being weighted into the score (signals.momentum_score_capped) -- stock sleeve ranking ONLY, eligibility_mask still uses raw (uncapped) returns for its sign checks",
+        "rationale": "an uncapped 12m return of +2643%% (real case: SNDK) contributes 2.64 of a 3.07 total score at just a 10%% nominal weight, so one outlier dominates the ranking for months after a sharp reversal. Capping bounds each term's max contribution to weight*cap, restoring the intended 20/30/40/10 balance.",
+        "tested_alternative_risk_adjusted": "dividing the raw score by trailing realized vol (63/126/252d windows) was also tested and REJECTED -- it underperformed the raw formula on every metric (CAGR, Sharpe, MaxDD, Calmar) at every window tried, because in this universe high momentum and high realized vol are correlated (growth/tech names), so vol-penalizing the score filters out the sleeve's actual return engine, not just the outlier risk.",
+        "sweep_evidence": "cap in {0.5, 0.75, 1.0, 1.5, 2.0} tested; only 0.75 beat the raw formula's Sharpe (1.1835 vs 1.1477) without giving back much CAGR/Calmar (16.26%% vs 16.63%%, 0.938 vs 0.967) -- tighter (0.5) over-cuts real momentum, looser (>=1.0) doesn't fix the outlier problem"
+      },
+      "stoploss": {
+        "enabled": true,
+        "threshold_pct": 0.25,
+        "mechanism": "per-position hard stop: once a held stock-sleeve pick draws down >=25%% from its entry (rebalance-date) price, its exposure is cut to 0%% (freed capital -> cash, 0%% return) for the rest of that holding period; resets at the next rebalance. Reuses pit_megacap's build_stock_stoploss_multipliers, lag-1 applied off daily close. Applies to the stock sleeve only, not the ETF sleeve.",
+        "sweep_evidence": "threshold in {10,15,20,25,30,40,50}%% tested on the uncapped formula: 25%% is the only threshold that beats no-stoploss on every metric simultaneously (CAGR 17.10%% vs 16.63%%, Sharpe 1.1995 vs 1.1477, MaxDD unchanged -17.19%%, Calmar 0.9947 vs 0.9674). Threshold optimum did not shift when combined with the capped score (still ~25-30%% best).",
+        "rejected_naive_guess": "15%% (copied from pit_megacap's STOCK_STOPLOSS_PCT default) actually made every metric WORSE (CAGR -1.9pp, MaxDD deeper, Calmar 0.97->0.81) -- too tight for this universe's normal volatility, triggers on pullbacks that would have recovered within the same month (sell-low, miss the rebound)."
+      }
+    },
+    "etf_sleeve": {
+      "tickers": [
+        "IWF",
+        "MTUM",
+        "QQQ",
+        "SCHG",
+        "SPMO",
+        "SPYG",
+        "VGT",
+        "VUG"
+      ],
+      "rationale": "growth/factor ETFs only (no sector ETFs) -- tested SECTOR_GROWTH_UNIVERSE (adds the 11 SPDR sector ETFs) head-to-head at matched settings and it lost on CAGR/Sharpe/Calmar; defensive sectors (XLU/XLP etc.) rarely rank near the top of a momentum sort and mostly diluted the pool",
+      "top_k": 5,
+      "weighting": "equal split (rank-weighting tested, no improvement over equal at this K)",
+      "sleeve_pct_from_spy": 0.3,
+      "top_k_sensitivity": "flat plateau from K=5 to K=19 (Calmar 0.93-0.94 throughout, even K=19 i.e. no selection at all) -- K=5 is the best point tested but not a sharp optimum; any K in 5-15 performs about the same. The sleeve's edge comes mainly from SPY-gate timing and diversifying the stock sleeve, not from picking winning sectors."
+    },
+    "country_universe": [
+      "EWC",
+      "EWA",
+      "EWW",
+      "EWZ",
+      "ARGT",
+      "ECH",
+      "EPU",
+      "GXG",
+      "EWG",
+      "EWU",
+      "EWQ",
+      "EWL",
+      "EWP",
+      "EWI",
+      "EWN",
+      "EWD",
+      "EDEN",
+      "EIRL",
+      "NORW",
+      "EPOL",
+      "GREK",
+      "TUR",
+      "EWJ",
+      "DXJ",
+      "EWT",
+      "EWY",
+      "INDA",
+      "EPI",
+      "MCHI",
+      "KWEB",
+      "EWS",
+      "EWM",
+      "EIDO",
+      "VNM",
+      "THD",
+      "ENZL",
+      "PAK",
+      "KSA",
+      "QAT",
+      "UAE",
+      "EIS",
+      "EZA",
+      "EGPT"
+    ],
+    "country_min_history_trading_days": 2520,
+    "country_sleeve_n_picks": 1,
+    "country_sleeve_pct_per_pick_from_spy": 0.04,
+    "country_sleeve_rationale": "shrunk from the baseline's 2 picks (8% total) to 1 pick (4%) to free SPY headroom for the two momentum sleeves above -- tested head-to-head, 1 pick outperformed 2 at every K/sleeve_pct combo tried, a small but consistent effect"
+  },
+  "base_allocation": {
+    "with_btc": {
+      "SPY": 0.4,
+      "GC=F": 0.3,
+      "BTC-USD": 0.1,
+      "BIL": 0.2
+    },
+    "btc_entry_mode": "point-in-time (btc_pit=True) -- see the PIT mega-cap config for full rationale",
+    "dynamic_bil": {
+      "enabled": true,
+      "shift_pp": 0.05,
+      "floor": 0.1,
+      "condition": "NOT in the gold-DD-boost regime (SPY >= SMA200 AND SPY 252d drawdown > -8%)"
+    }
+  },
+  "sleeve_funding_order": [
+    "1. dynamic BIL shift into SPY (if applicable)",
+    "2. stock sleeve funded from SPY (capped at whatever SPY has)",
+    "3. ETF sleeve funded from remaining SPY",
+    "4. country sleeve funded from remaining SPY",
+    "5. gold DD boost funded from remaining SPY (if triggered, floor SPY at spy_floor)"
+  ],
+  "spy_gate": {
+    "enabled": true,
+    "applies_to": "BOTH momentum sleeves (stock and ETF) simultaneously -- no new picks in either sleeve that month, capital stays in SPY",
+    "condition": "SPY close < SMA200 OR SPY 252-trading-day drawdown <= -8%",
+    "trigger_evaluated": "at monthly rebalance (not re-evaluated intra-month)"
+  },
+  "gold_dd_boost": {
+    "trigger": "same condition as spy_gate above",
+    "max_boost_pct": 0.16,
+    "boost_type": "binary (full max_boost_pct when triggered, 0 otherwise), clipped so SPY stays >= floor",
+    "dd_window_trading_days": 252,
+    "dd_trigger_threshold": -0.08,
+    "spy_floor_after_funding_and_boost": 0.2
+  },
+  "signal_definitions": {
+    "momentum_score_weights": {
+      "1m_pct": 0.2,
+      "3m_pct": 0.3,
+      "6m_pct": 0.4,
+      "12m_pct": 0.1
+    },
+    "momentum_score_cap_stock_sleeve_only": "stock sleeve's score uses these same weights but each lookback return is pre-clipped to +/-75% -- see universe.stock_sleeve.momentum_score_cap. ETF and country sleeves still use the raw (uncapped) score.",
+    "eligibility_rule": "3M return > 0 AND 6M return > 0 AND price > SMA200 (always computed on RAW, uncapped returns), plus (stock sleeve only) currently a PIT S&P 500 member AND >= 252 trading days of history",
+    "signal_execution": "lag-1 close (signal computed at close D, applied from session D+1)",
+    "rebalance_frequency": "monthly, last trading day of month -- NOTE: the stop-loss below is the one exception to this, it can cut a position intra-month"
+  },
+  "daily_exposure_overlay": {
+    "applies_to": "standing target weights between rebalances, evaluated off lag-1 close",
+    "spy": {
+      "condition": "close < SMA300",
+      "multiplier_when_triggered": 0.5
+    },
+    "gold": {
+      "condition": "252d drawdown <= -0.08",
+      "multiplier_when_triggered": 0.5
+    },
+    "btc": {
+      "condition": "close < SMA50",
+      "multiplier_when_triggered": 0.0
+    },
+    "momentum_sleeves_country_etfs_bil": "held at full target weight until next rebalance, no daily discount -- the SPY gate is the only risk control on both momentum sleeves"
+  },
+  "backtest_results_max_window_2007_05_to_now_19_2y": {
+    "as_of_price_cache": "2026-08-13 (PIT stock panel; 719 columns, 698 carrying data - the 21 blanks are delisted names whose adjusted history cannot be re-downloaded at all). PIT membership current to 2026-08-10 via Sp500MembershipRefreshDaily. Base-asset cache runs to 2026-08-12.",
+    "this_config": {
+      "cagr": 0.1564,
+      "sharpe": 1.1171,
+      "ann_vol": 0.1388,
+      "max_dd": -0.1734,
+      "calmar": 0.9019,
+      "note": "Re-run 2026-08-14 on the corrected PIT panel: 698 usable tickers (up from 630) after the quarantine-gate fix, plus S&P 500 membership refreshed from 2026-01-14 to 2026-08-10 after a 7-month freeze - 13 stale members retired (BK, HOLX, CTRA, DAY, EA, EPAM, ...) and 12 real members onboarded with full price history (BNY, MRVL, VRT, VEEV, FLEX, CASY, COHR, LITE, FERG, ECHO, FDXF, HONA). Still BELOW the pre-fix 0.1642/1.2042 figure, and that gap is the quarantine fix, not the membership fix: the old panel deleted 56 tickers for having CONFIRMED REAL >50% single-day moves, disproportionately banks that crashed and recovered through 2008 and binary-outcome biotechs, which flattered a momentum backtest. See superseded_630_ticker_universe_reference. Latest rebalance 2026-07-31 picks DDOG/HPE, unchanged by either fix - the differences are historical, the live sleeve is unaffected. No newly-onboarded member has been picked yet; CIEN (added to the index 2026-02-13) was picked at the 2026-02-27 rebalance."
+    },
+    "uncapped_no_stoploss_reference": {
+      "cagr": 0.1663,
+      "sharpe": 1.1477,
+      "max_dd": -0.1719,
+      "calmar": 0.9674,
+      "note": "the original formula (raw momentum score, no stop-loss), recomputed on the same refreshed price cache -- kept here for reference since it has the highest raw CAGR/Calmar of any variant tested, at the cost of retaining full exposure to single-stock score-domination risk (e.g. SNDK)."
+    },
+    "uncapped_plus_stoploss25_reference": {
+      "cagr": 0.171,
+      "sharpe": 1.1995,
+      "max_dd": -0.1719,
+      "calmar": 0.9947,
+      "note": "raw score + 25% stop-loss alone (no cap) -- highest CAGR/Calmar of every variant tested, but the stop-loss doesn't stop the SAME stock being re-picked next rebalance (stop-loss has no memory across rebalances), so SNDK still shows up again in this variant's latest pick."
+    },
+    "stock_sleeve_only_top2_weighted_25pct": {
+      "cagr": 0.1515,
+      "sharpe": 1.11,
+      "max_dd": -0.187,
+      "calmar": 0.8099,
+      "note": "stale -- computed before the price-cache refresh and before cap/stoploss existed; kept for rough single-sleeve-vs-combined context only"
+    },
+    "etf_sleeve_only_top5_growth_factor_30pct": {
+      "cagr": 0.1256,
+      "sharpe": 1.2755,
+      "max_dd": -0.1695,
+      "calmar": 0.7411,
+      "note": "stale, same caveat as above"
+    },
+    "spy_buy_and_hold": {
+      "cagr": 0.1088,
+      "sharpe": 0.6219,
+      "max_dd": -0.5519,
+      "calmar": 0.1971
+    },
+    "note": "this_config beats SPY buy-and-hold and both single-sleeve reference points on every metric. Against the two same-cache reference variants above it does NOT dominate outright: uncapped_plus_stoploss25 has higher CAGR/Calmar, this_config has higher Sharpe and avoids concentration in a single extreme-momentum name. Choice between them is a CAGR-vs-robustness call, not a clean win either way -- this_config was picked as the default for the robustness property, which a 19.2y backtest with only one SNDK-like episode understates.",
+    "superseded_630_ticker_universe_reference": {
+      "cagr": 0.1642,
+      "sharpe": 1.2042,
+      "ann_vol": 0.1337,
+      "max_dd": -0.1733,
+      "calmar": 0.9477,
+      "note": "SUPERSEDED 2026-08-14, kept for comparison. Same command, same 2026-08-13 end date, but run against the PIT panel BEFORE the quarantine-gate fix, i.e. with 630 usable tickers instead of 686. Re-verified on 2026-08-14 by rebuilding the panel from prices_usd_clean.parquet.bak-2026-08-14-pre-bar-quarantine: reproduced at cagr 0.1643, sharpe 1.2015, max_dd -0.1733, calmar 0.9481 - within rounding of the numbers stored here, which confirms the two extra weeks of data changed nothing and the entire delta below is the universe change. capped momentum score (0.75) + 25% stock stop-loss combined -- best Sharpe of every variant tested, and avoids the SNDK-style single-stock score-domination case (latest rebalance, 2026-07-31, picks DDOG/DELL not SNDK)."
+    },
+    "superseded_686_ticker_stale_membership_reference": {
+      "cagr": 0.1563,
+      "sharpe": 1.1136,
+      "ann_vol": 0.1392,
+      "max_dd": -0.1734,
+      "calmar": 0.9013,
+      "note": "Intermediate run 2026-08-14: quarantine gate already fixed (686 usable tickers) but PIT membership still frozen at 2026-01-14. Kept only to separate the two effects - the membership refresh on top of this moved the max-window numbers by +0.0035 Sharpe, i.e. almost nothing, because it only touches the last 7 months of a 19.2-year window."
+    }
+  },
+  "caveats": [
+    "MaxDD is flat at ~-17.2% across a wide range of sleeve sizes/K tested (up to a combined 60% of book in the two momentum sleeves) because the worst historical drawdown period (2008, 2020) always falls inside a SPY-gate-triggered window that closes both sleeves. This means the backtest's insensitivity to sleeve size is a property of the SPY gate reacting in time for these TWO specific historical crises, not evidence that concentration risk is free in general. A faster or more idiosyncratic crash the gate doesn't catch in time would not show this flat-MaxDD behavior.",
+    "The stop-loss has NO memory across rebalances -- a stock stopped out mid-month can be re-picked at the very next rebalance if its (still uncapped-for-eligibility, and now possibly still-capped-but-still-highest) score is still top-ranked. Observed directly: SNDK was stopped out intra-month in July 2026 (drawdown breached -15% within days of entry) yet still ranked in the eligible pool the same month under the raw formula. The momentum-score cap is what actually keeps a name like this from being RE-picked, not the stop-loss -- the two mechanisms are complementary (intra-month risk control vs. selection-time robustness), not redundant.",
+    "No transaction costs or slippage modeled.",
+    "Not tested out-of-sample; all parameter choices (top-K, sleeve sizes, country pick count, ETF pool composition, momentum cap, stop-loss threshold) were selected by sweeping the same 19.2y history being reported on.",
+    "Unfilled sleeve allocations (too few eligible names, or the SPY gate is active) revert to SPY, not cash. Stop-loss-freed capital similarly goes to cash (0% return), not SPY.",
+    "Sharpe ratio uses risk-free rate = 0%.",
+    "The PIT stock price source (a sibling repo's cache) has been observed to go stale for weeks at a time without erroring -- it silently forward-fills the last real price via align_to_master_calendar, which can make a momentum score look artificially frozen/elevated. Verify data/cache/country_etf_tactical_pit_megacap_prices.parquet's per-ticker last-valid-date is recent before trusting a live pick; rebuild via scripts/build_pit_megacap_cache.py after refreshing the upstream source if it's stale."
+  ],
+  "data": {
+    "source": "yfinance (ETFs/base assets), cleaned S&P 500 PIT panel (stocks)",
+    "master_trading_calendar": "SPY's trading days; other tickers forward-filled onto it",
+    "known_data_fixes": "PAK (Pakistan ETF) had a corrupted single-day print on 2016-07-01 (-76% then +309% round trip over 3 sessions, no matching news) -- nulled out in scripts/build_price_cache.py's KNOWN_BAD_TICKS so alignment.ffill() carries the prior close through the gap. US PIT stock panel, 2026-08-14: the clean-cache quarantine gate used to drop an entire ticker whenever a freshly re-downloaded adjusted series still contained a >50% single-day move, which deleted 56 tickers for having CONFIRMED REAL moves (AIG -61% 2008-09-15, MS +87% 2008-10-13, C +58% 2008-11-24, VRTX +55% 2012-05-07, AMD +52% 2016-04-22, REGN -57% 2003-03-31). It now keeps a series when the legacy and freshly downloaded histories agree on the same date and direction, nulls only the disputed BAR when they disagree on a day the legacy series observed, and still drops the whole ticker only when coverage is under 80% so nothing can be verified. See dynamic_port_opt/scripts/build_clean_us_price_cache.py. PIT membership, 2026-08-14: sp500_ticker_start_end.csv had no refresh job and was 7 months stale (newest change 2026-01-14). Now rebuilt daily by sp500/update_sp500_membership.py (Sp500MembershipRefreshDaily, 19:50, before both consumers), which reconstructs membership from Wikipedia revision history rather than the article's 'Selected changes' table - that table was deleted from the page some time after 2026-02-24. extend_portopt_20y_source.py now also onboards full price history for index entrants that have no column yet; previously the price panel could only ever refresh its seed ticker set, so a new S&P 500 member was never investable."
+  }
+}
