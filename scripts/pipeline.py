@@ -118,8 +118,8 @@ def refresh():
         if path.exists():
             return t, pd.read_parquet(path)['close']
         last = prices[t].last_valid_index()
-        start = max(last - pd.Timedelta(days=SETTINGS['overlap_days']),
-                    session - pd.Timedelta(days=60))
+        # Resume from the actual watermark even after a long outage.
+        start = last - pd.Timedelta(days=SETTINGS['overlap_days'])
         raw = yf.download(t, start=str(start.date()),
                           end=str((session + pd.Timedelta(days=1)).date()),
                           auto_adjust=True, interval='1d', threads=False,
@@ -139,12 +139,12 @@ def refresh():
             t = futures[future]
             try:
                 t, fresh = future.result()
-                # Main thread persists every unit before it can be lost.
+                merged = merge_adjusted(prices[t], fresh)
+                # Only validated units become reusable success checkpoints.
                 path = checkpoint / f'{t.replace("=", "_")}.parquet'
                 temp = path.with_suffix('.tmp')
                 fresh.to_frame('close').to_parquet(temp)
                 os.replace(temp, path)
-                merged = merge_adjusted(prices[t], fresh)
                 prices = prices.reindex(prices.index.union(merged.index))
                 prices[t] = merged
             except Exception as exc:
