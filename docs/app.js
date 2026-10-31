@@ -95,7 +95,7 @@ function showMonth(row,tr){
 
 function renderMonths(){
  const data=current().months;
- let rows=archive==='recent'?data.slice(-12):data.filter(r=>r.month.startsWith(archive));
+ let rows=archive==='recent'?data.filter(r=>r.month<=dataset.data_asof.slice(0,7)).slice(-12):data.filter(r=>r.month.startsWith(archive));
  rows=[...rows].reverse();$('months').replaceChildren();$('month-detail').hidden=true;
  for(const row of rows){
   const tr=el('tr');tr.tabIndex=0;tr.setAttribute('aria-label',`Show allocation for ${row.month}`);
