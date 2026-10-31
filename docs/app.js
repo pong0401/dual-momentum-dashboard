@@ -1,8 +1,8 @@
+import {groupAllocation} from './segments.js';
 const $ = id => document.getElementById(id);
 const fmt = (n, digits=2) => Number.isFinite(n) ? (n * 100).toLocaleString('en-US',{minimumFractionDigits:digits,maximumFractionDigits:digits})+'%' : '—';
 const number = n => n.toLocaleString('en-US',{maximumFractionDigits:2});
 const money = n => '$'+n.toLocaleString('en-US',{maximumFractionDigits:n<1000?2:0});
-const palette=['#73e6c2','#789eff','#c3a4f6','#e9bb78','#70c2dd','#d88ca9','#a1aebc','#a1cb91'];
 let dataset, variant='with_btc', range='ALL', archive='recent';
 
 function el(tag, text, cls) {const x=document.createElement(tag); if(text!==undefined)x.textContent=text; if(cls)x.className=cls; return x;}
@@ -72,25 +72,46 @@ function renderMetrics(){
 
 function renderAllocation(){
  const v=current().latest;
- const weights=Object.entries({...v.effective_weights_next_session,CASH:v.cash_weight_next_session}).sort((a,b)=>b[1]-a[1]);
+ const groups=groupAllocation({...v.effective_weights_next_session,CASH:v.cash_weight_next_session},v.rebalance_meta.stock_picks);
  $('current-month').textContent=dataset.manifest.month_end_decision_date.slice(0,7) < dataset.data_asof.slice(0,7) ? dataset.data_asof.slice(0,7) : nextMonth(dataset.manifest.month_end_decision_date);
  $('allocation').replaceChildren();$('allocation-bar').replaceChildren();
- weights.forEach(([ticker,value],i)=>{
-  const color=ticker==='CASH'?'#657689':palette[i%palette.length];
-  if(value>0){const bar=el('span');bar.style.background=color;bar.style.width=value*100+'%';bar.title=ticker+' '+fmt(value);$('allocation-bar').append(bar);}
-  const row=el('div',undefined,'allocation-row'),dot=el('i');dot.style.background=color;
-  const name=el('span',ticker);if(ticker==='GC=F')name.append(el('small','Gold proxy'));if(ticker==='CASH')name.append(el('small','Uninvested'));
-  row.append(dot,name,el('strong',fmt(value)));$('allocation').append(row);
+ groups.forEach(group=>{
+  if(group.total>0){const bar=el('span');bar.style.background=group.color;bar.style.width=group.total*100+'%';bar.title=group.label+' '+fmt(group.total);$('allocation-bar').append(bar);}
  });
+ renderGroups($('allocation'),groups);
  $('overlay-note').textContent=`Decision ${dataset.manifest.month_end_decision_date} · overlay ${dataset.data_asof}. น้ำหนักรวมเงินสด 100% ก่อนปัดเศษ; ปรับเปลี่ยนได้ตาม daily overlay`;
  $('download').href=`data/returns_${variant}.csv`;
+}
+
+function renderGroups(host,groups){
+ const summary=el('div',undefined,'segment-summary');
+ groups.forEach(group=>{
+  const card=el('div',undefined,'segment-card');card.dataset.segment=group.id;card.style.setProperty('--segment-color',group.color);
+  card.append(el('span',group.label),el('strong',fmt(group.total)));summary.append(card);
+ });
+ host.append(summary);
+ groups.forEach(group=>{
+  if(!group.items.some(item=>item.weight>0))return;
+  const section=el('section',undefined,'allocation-segment');section.dataset.segment=group.id;section.setAttribute('aria-label',group.label+' allocation');
+  const header=el('div',undefined,'segment-heading'),label=el('span',group.label),dot=el('i');dot.style.background=group.color;label.prepend(dot);
+  header.append(label,el('strong',fmt(group.total)));section.append(header);
+  group.items.forEach(({ticker,weight})=>{
+   const row=el('div',undefined,'allocation-row'),dot=el('i');dot.style.background=group.color;
+   const name=el('span',ticker);
+   if(ticker==='GC=F')name.append(el('small','Gold proxy'));
+   if(ticker==='BIL')name.append(el('small','Treasury ETF'));
+   if(ticker==='CASH')name.append(el('small','Uninvested'));
+   row.append(dot,name,el('strong',fmt(weight)));section.append(row);
+  });
+  host.append(section);
+ });
 }
 function nextMonth(date){const d=new Date(date+'T00:00:00Z');d.setUTCDate(1);d.setUTCMonth(d.getUTCMonth()+1);return d.toISOString().slice(0,7);}
 
 function showMonth(row,tr){
  document.querySelectorAll('#months tr').forEach(r=>r.classList.remove('selected'));tr.classList.add('selected');
  const detail=$('month-detail');detail.hidden=false;detail.replaceChildren(el('strong',`${row.month} · Monthly targets before overlay`),el('div',`Signal: ${row.decision_date} close → next tradable session`));
- Object.entries({...row.weights,CASH:row.cash}).filter(([,w])=>w>0).sort((a,b)=>b[1]-a[1]).forEach(([t,w])=>detail.append(el('span',`${t}  ${fmt(w)}`,'weight-chip')));
+ renderGroups(detail,groupAllocation({...row.weights,CASH:row.cash},row.stock_picks));
 }
 
 function renderMonths(){
