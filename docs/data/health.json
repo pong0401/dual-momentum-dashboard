@@ -1,8 +1,22 @@
 {
-  "status": "ok",
-  "expected_session": "2026-10-30",
-  "fresh_symbols": 567,
+  "checked_at_utc": "2026-11-03T03:34:44.947420+00:00",
+  "expected_session": "2026-11-02",
+  "requested": 567,
+  "fresh_symbols": 565,
   "expected_symbols": 567,
-  "missing": [],
-  "checked_at_utc": "2026-10-31T08:30:17.267440+00:00"
+  "missing": [
+    "BTC-USD",
+    "KVUE"
+  ],
+  "failures": [
+    {
+      "ticker": "BTC-USD",
+      "error": "Missing completed close 2026-11-02"
+    },
+    {
+      "ticker": "KVUE",
+      "error": "Missing completed close 2026-11-02"
+    }
+  ],
+  "status": "blocked"
 }
