@@ -1,26 +1,21 @@
 {
-  "checked_at_utc": "2026-11-05T02:39:06.052028+00:00",
-  "expected_session": "2026-11-04",
+  "checked_at_utc": "2026-11-06T02:37:25.535038+00:00",
+  "expected_session": "2026-11-05",
   "requested": 567,
-  "fresh_symbols": 564,
+  "fresh_symbols": 565,
   "expected_symbols": 567,
   "missing": [
     "BTC-USD",
-    "EWI",
     "KVUE"
   ],
   "failures": [
     {
       "ticker": "BTC-USD",
-      "error": "Missing completed close 2026-11-04"
-    },
-    {
-      "ticker": "EWI",
-      "error": "index 218 is out of bounds for axis 0 with size 43"
+      "error": "Missing completed close 2026-11-05"
     },
     {
       "ticker": "KVUE",
-      "error": "Missing completed close 2026-11-04"
+      "error": "Missing completed close 2026-11-05"
     }
   ],
   "status": "blocked"
