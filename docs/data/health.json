@@ -1,21 +1,211 @@
 {
-  "checked_at_utc": "2026-11-12T03:13:20.494566+00:00",
-  "expected_session": "2026-11-11",
+  "checked_at_utc": "2026-11-13T02:45:14.309012+00:00",
+  "expected_session": "2026-11-12",
   "requested": 567,
-  "fresh_symbols": 565,
+  "fresh_symbols": 527,
   "expected_symbols": 567,
   "missing": [
+    "ACGL",
+    "ACN",
+    "ADBE",
+    "ADI",
+    "ADM",
+    "ADP",
+    "ADSK",
+    "AEE",
+    "AEP",
+    "AES",
+    "AFL",
+    "AIG",
+    "AIZ",
+    "AJG",
+    "AKAM",
+    "ALB",
+    "ALGN",
+    "ALL",
+    "ALLE",
+    "AMAT",
+    "AMCR",
+    "AMD",
+    "AME",
+    "AMGN",
+    "AMP",
+    "AMT",
+    "AMZN",
+    "ANET",
+    "AON",
+    "AOS",
+    "APA",
+    "APD",
+    "APH",
+    "APO",
+    "APP",
+    "APTV",
+    "ARE",
+    "ARES",
     "BTC-USD",
     "KVUE"
   ],
   "failures": [
     {
+      "ticker": "ACGL",
+      "error": "index 9 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ACN",
+      "error": "index 10 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ADBE",
+      "error": "index 12 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ADI",
+      "error": "index 14 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ADM",
+      "error": "index 15 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ADP",
+      "error": "index 16 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ADSK",
+      "error": "index 17 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AEE",
+      "error": "index 19 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AEP",
+      "error": "index 20 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AES",
+      "error": "index 21 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AFL",
+      "error": "index 23 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AIG",
+      "error": "index 24 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AIZ",
+      "error": "index 26 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AJG",
+      "error": "index 27 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AKAM",
+      "error": "index 28 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ALB",
+      "error": "index 29 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ALGN",
+      "error": "index 30 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ALL",
+      "error": "index 32 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ALLE",
+      "error": "index 33 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AMAT",
+      "error": "index 34 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AMCR",
+      "error": "index 35 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AMD",
+      "error": "index 36 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AME",
+      "error": "index 37 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AMGN",
+      "error": "index 39 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AMP",
+      "error": "index 40 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AMT",
+      "error": "index 41 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AMZN",
+      "error": "index 43 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ANET",
+      "error": "index 46 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AON",
+      "error": "index 48 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "AOS",
+      "error": "index 49 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "APA",
+      "error": "index 50 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "APD",
+      "error": "index 52 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "APH",
+      "error": "index 53 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "APO",
+      "error": "index 54 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "APP",
+      "error": "index 55 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "APTV",
+      "error": "index 56 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ARE",
+      "error": "index 57 is out of bounds for axis 0 with size 4"
+    },
+    {
+      "ticker": "ARES",
+      "error": "index 58 is out of bounds for axis 0 with size 4"
+    },
+    {
       "ticker": "BTC-USD",
-      "error": "Missing completed close 2026-11-11"
+      "error": "Missing completed close 2026-11-12"
     },
     {
       "ticker": "KVUE",
-      "error": "Missing completed close 2026-11-11"
+      "error": "Missing completed close 2026-11-12"
     }
   ],
   "status": "blocked"
