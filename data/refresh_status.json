@@ -1,211 +1,416 @@
 {
-  "checked_at_utc": "2026-11-13T02:45:14.309012+00:00",
-  "expected_session": "2026-11-12",
+  "checked_at_utc": "2026-11-14T02:33:34.730359+00:00",
+  "expected_session": "2026-11-13",
   "requested": 567,
-  "fresh_symbols": 527,
+  "fresh_symbols": 486,
   "expected_symbols": 567,
   "missing": [
-    "ACGL",
-    "ACN",
-    "ADBE",
-    "ADI",
-    "ADM",
-    "ADP",
-    "ADSK",
-    "AEE",
-    "AEP",
-    "AES",
-    "AFL",
-    "AIG",
-    "AIZ",
-    "AJG",
-    "AKAM",
-    "ALB",
-    "ALGN",
-    "ALL",
+    "ABBV",
+    "ABNB",
     "ALLE",
-    "AMAT",
     "AMCR",
-    "AMD",
-    "AME",
-    "AMGN",
-    "AMP",
-    "AMT",
-    "AMZN",
     "ANET",
-    "AON",
-    "AOS",
-    "APA",
-    "APD",
-    "APH",
-    "APO",
     "APP",
-    "APTV",
-    "ARE",
     "ARES",
+    "BE",
     "BTC-USD",
-    "KVUE"
+    "CARR",
+    "CDW",
+    "CEG",
+    "CFG",
+    "COIN",
+    "CRWD",
+    "CVNA",
+    "DASH",
+    "DDOG",
+    "DELL",
+    "DOW",
+    "EDEN",
+    "EXE",
+    "FANG",
+    "FDXF",
+    "FOX",
+    "FOXA",
+    "FTV",
+    "GDDY",
+    "GEHC",
+    "GEV",
+    "GOOG",
+    "HLT",
+    "HONA",
+    "HOOD",
+    "HPE",
+    "HUBB",
+    "INDA",
+    "INVH",
+    "IQV",
+    "IR",
+    "KEYS",
+    "KHC",
+    "KSA",
+    "KVUE",
+    "KWEB",
+    "LITE",
+    "META",
+    "MRNA",
+    "MTUM",
+    "NCLH",
+    "NOW",
+    "NWS",
+    "NWSA",
+    "OTIS",
+    "P",
+    "PANW",
+    "PLTR",
+    "PSX",
+    "PYPL",
+    "Q",
+    "QAT",
+    "RDDT",
+    "SNDK",
+    "SOLV",
+    "SPMO",
+    "SW",
+    "SYF",
+    "TWLO",
+    "UAE",
+    "UBER",
+    "VEEV",
+    "VICI",
+    "VLTO",
+    "VRT",
+    "VST",
+    "VYLR",
+    "WDAY",
+    "XLC",
+    "XLRE",
+    "XYZ",
+    "ZTS"
   ],
   "failures": [
     {
-      "ticker": "ACGL",
-      "error": "index 9 is out of bounds for axis 0 with size 4"
+      "ticker": "ABNB",
+      "error": "Missing completed close 2026-11-13"
     },
     {
-      "ticker": "ACN",
-      "error": "index 10 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ADBE",
-      "error": "index 12 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ADI",
-      "error": "index 14 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ADM",
-      "error": "index 15 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ADP",
-      "error": "index 16 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ADSK",
-      "error": "index 17 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AEE",
-      "error": "index 19 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AEP",
-      "error": "index 20 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AES",
-      "error": "index 21 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AFL",
-      "error": "index 23 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AIG",
-      "error": "index 24 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AIZ",
-      "error": "index 26 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AJG",
-      "error": "index 27 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AKAM",
-      "error": "index 28 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ALB",
-      "error": "index 29 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ALGN",
-      "error": "index 30 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ALL",
-      "error": "index 32 is out of bounds for axis 0 with size 4"
+      "ticker": "ABBV",
+      "error": "Missing completed close 2026-11-13"
     },
     {
       "ticker": "ALLE",
-      "error": "index 33 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AMAT",
-      "error": "index 34 is out of bounds for axis 0 with size 4"
+      "error": "Missing completed close 2026-11-13"
     },
     {
       "ticker": "AMCR",
-      "error": "index 35 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AMD",
-      "error": "index 36 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AME",
-      "error": "index 37 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AMGN",
-      "error": "index 39 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AMP",
-      "error": "index 40 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AMT",
-      "error": "index 41 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AMZN",
-      "error": "index 43 is out of bounds for axis 0 with size 4"
+      "error": "Missing completed close 2026-11-13"
     },
     {
       "ticker": "ANET",
-      "error": "index 46 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AON",
-      "error": "index 48 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "AOS",
-      "error": "index 49 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "APA",
-      "error": "index 50 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "APD",
-      "error": "index 52 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "APH",
-      "error": "index 53 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "APO",
-      "error": "index 54 is out of bounds for axis 0 with size 4"
+      "error": "Missing completed close 2026-11-13"
     },
     {
       "ticker": "APP",
-      "error": "index 55 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "APTV",
-      "error": "index 56 is out of bounds for axis 0 with size 4"
-    },
-    {
-      "ticker": "ARE",
-      "error": "index 57 is out of bounds for axis 0 with size 4"
+      "error": "Missing completed close 2026-11-13"
     },
     {
       "ticker": "ARES",
-      "error": "index 58 is out of bounds for axis 0 with size 4"
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "BE",
+      "error": "Missing completed close 2026-11-13"
     },
     {
       "ticker": "BTC-USD",
-      "error": "Missing completed close 2026-11-12"
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "CARR",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "CDW",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "CEG",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "CFG",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "COIN",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "CRWD",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "CVNA",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "DDOG",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "DELL",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "DASH",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "DOW",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "EDEN",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "EXE",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "FANG",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "FDXF",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "FOX",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "FOXA",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "FTV",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "GDDY",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "GEHC",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "GEV",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "GOOG",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "HLT",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "HPE",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "HOOD",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "HUBB",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "HONA",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "INDA",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "INVH",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "IQV",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "IR",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "KHC",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "KEYS",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "KWEB",
+      "error": "Missing completed close 2026-11-13"
     },
     {
       "ticker": "KVUE",
-      "error": "Missing completed close 2026-11-12"
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "KSA",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "LITE",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "META",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "MRNA",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "NCLH",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "MTUM",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "NOW",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "NWS",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "NWSA",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "OTIS",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "P",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "PANW",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "PLTR",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "PSX",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "QAT",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "RDDT",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "PYPL",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "Q",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "SNDK",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "SOLV",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "SPMO",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "SW",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "SYF",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "TWLO",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "UAE",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "VEEV",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "UBER",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "VICI",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "VLTO",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "VST",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "VRT",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "VYLR",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "WDAY",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "XLC",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "XLRE",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "XYZ",
+      "error": "Missing completed close 2026-11-13"
+    },
+    {
+      "ticker": "ZTS",
+      "error": "Missing completed close 2026-11-13"
     }
   ],
   "status": "blocked"
