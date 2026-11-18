@@ -1,6 +1,6 @@
 {
-  "checked_at_utc": "2026-11-17T04:40:32.358287+00:00",
-  "expected_session": "2026-11-16",
+  "checked_at_utc": "2026-11-18T03:48:11.149225+00:00",
+  "expected_session": "2026-11-17",
   "requested": 567,
   "fresh_symbols": 565,
   "expected_symbols": 567,
@@ -11,11 +11,11 @@
   "failures": [
     {
       "ticker": "BTC-USD",
-      "error": "Missing completed close 2026-11-16"
+      "error": "Missing completed close 2026-11-17"
     },
     {
       "ticker": "KVUE",
-      "error": "Missing completed close 2026-11-16"
+      "error": "Missing completed close 2026-11-17"
     }
   ],
   "status": "blocked"
