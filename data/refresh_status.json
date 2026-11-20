@@ -1,21 +1,406 @@
 {
-  "checked_at_utc": "2026-11-19T03:42:55.121333+00:00",
-  "expected_session": "2026-11-18",
+  "checked_at_utc": "2026-11-20T03:33:43.266186+00:00",
+  "expected_session": "2026-11-19",
   "requested": 567,
-  "fresh_symbols": 565,
+  "fresh_symbols": 488,
   "expected_symbols": 567,
   "missing": [
+    "ABBV",
+    "ABNB",
+    "ALLE",
+    "AMCR",
+    "ANET",
+    "APP",
+    "ARES",
+    "BE",
     "BTC-USD",
-    "KVUE"
+    "CARR",
+    "CDW",
+    "CEG",
+    "CFG",
+    "COIN",
+    "CRWD",
+    "CVNA",
+    "DASH",
+    "DDOG",
+    "DELL",
+    "DOW",
+    "EDEN",
+    "EXE",
+    "FANG",
+    "FDXF",
+    "FOX",
+    "FOXA",
+    "FTV",
+    "GDDY",
+    "GEHC",
+    "GEV",
+    "GOOG",
+    "HLT",
+    "HONA",
+    "HOOD",
+    "HPE",
+    "INDA",
+    "INVH",
+    "IQV",
+    "IR",
+    "KEYS",
+    "KHC",
+    "KSA",
+    "KVUE",
+    "KWEB",
+    "LITE",
+    "META",
+    "MRNA",
+    "MTUM",
+    "NCLH",
+    "NOW",
+    "NWS",
+    "NWSA",
+    "OTIS",
+    "P",
+    "PANW",
+    "PLTR",
+    "PSX",
+    "PYPL",
+    "Q",
+    "QAT",
+    "RDDT",
+    "SOLV",
+    "SPMO",
+    "SW",
+    "SYF",
+    "TWLO",
+    "UAE",
+    "UBER",
+    "VEEV",
+    "VICI",
+    "VLTO",
+    "VRT",
+    "VST",
+    "VYLR",
+    "WDAY",
+    "XLC",
+    "XLRE",
+    "XYZ",
+    "ZTS"
   ],
   "failures": [
     {
+      "ticker": "ABBV",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "ABNB",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "ALLE",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "AMCR",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "ANET",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "APP",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "ARES",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "BE",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
       "ticker": "BTC-USD",
-      "error": "Missing completed close 2026-11-18"
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "CARR",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "CDW",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "CFG",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "CEG",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "COIN",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "CRWD",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "CVNA",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "DDOG",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "DASH",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "DELL",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "DOW",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "EDEN",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "EXE",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "FANG",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "FDXF",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "FOX",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "FOXA",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "FTV",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "GDDY",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "GEHC",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "GEV",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "GOOG",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "HONA",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "HOOD",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "HPE",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "HLT",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "INDA",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "INVH",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "IR",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "IQV",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "KEYS",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "KHC",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "KSA",
+      "error": "Missing completed close 2026-11-19"
     },
     {
       "ticker": "KVUE",
-      "error": "Missing completed close 2026-11-18"
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "LITE",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "KWEB",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "META",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "MRNA",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "MTUM",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "NCLH",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "NOW",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "NWSA",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "NWS",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "OTIS",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "P",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "PANW",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "PLTR",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "PSX",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "Q",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "QAT",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "PYPL",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "RDDT",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "SOLV",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "SPMO",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "SW",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "SYF",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "TWLO",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "UBER",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "UAE",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "VEEV",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "VICI",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "VLTO",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "VRT",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "VYLR",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "VST",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "WDAY",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "XLC",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "XLRE",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "XYZ",
+      "error": "Missing completed close 2026-11-19"
+    },
+    {
+      "ticker": "ZTS",
+      "error": "Missing completed close 2026-11-19"
     }
   ],
   "status": "blocked"
