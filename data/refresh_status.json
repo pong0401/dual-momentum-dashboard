@@ -1,6 +1,6 @@
 {
-  "checked_at_utc": "2026-11-24T06:12:30.716201+00:00",
-  "expected_session": "2026-11-23",
+  "checked_at_utc": "2026-11-25T05:00:41.236510+00:00",
+  "expected_session": "2026-11-24",
   "requested": 567,
   "fresh_symbols": 564,
   "expected_symbols": 567,
@@ -12,15 +12,15 @@
   "failures": [
     {
       "ticker": "BTC-USD",
-      "error": "Missing completed close 2026-11-23"
+      "error": "Missing completed close 2026-11-24"
     },
     {
       "ticker": "KVUE",
-      "error": "Missing completed close 2026-11-23"
+      "error": "Missing completed close 2026-11-24"
     },
     {
       "ticker": "SNDK",
-      "error": "Missing completed close 2026-11-23"
+      "error": "Missing completed close 2026-11-24"
     }
   ],
   "status": "blocked"
