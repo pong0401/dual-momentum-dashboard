@@ -1,22 +1,17 @@
 {
-  "checked_at_utc": "2026-11-26T04:16:18.449400+00:00",
+  "checked_at_utc": "2026-11-27T04:20:03.639658+00:00",
   "expected_session": "2026-11-25",
-  "requested": 567,
-  "fresh_symbols": 564,
+  "requested": 3,
+  "fresh_symbols": 565,
   "expected_symbols": 567,
   "missing": [
-    "BTC-USD",
     "KVUE",
     "SNDK"
   ],
   "failures": [
     {
-      "ticker": "BTC-USD",
-      "error": "Missing completed close 2026-11-25"
-    },
-    {
       "ticker": "KVUE",
-      "error": "Missing completed close 2026-11-25"
+      "error": "Yahoo returned no rows"
     },
     {
       "ticker": "SNDK",
